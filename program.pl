@@ -1,4 +1,72 @@
-% Predicado para mostrar el menú y procesar la opción seleccionada
+:- discontiguous menu/0.                % sentencia discontiguous se utiliza para evitar que el compilador arroje mensajes de advertencia al compilar
+:- discontiguous procesar_opcion/1.
+%=======================================================================================================================
+procesarOpcionPersonas(1):-
+    writeln(""),nl,
+    writeln("**********Agregar nueva persona**********").
+
+procesarOpcionPersonas(2):-
+    writeln(""),nl,
+    writeln("**********Mostrando todas las personas de la base de conocimientos**********").
+
+procesarOpcionPersonas(_):-
+    writeln(""),nl,
+    writeln("Opcion invalida, por favor seleccione una opcion valida"),nl,
+    procesar_opcion(1).
+
+% Predicado para procesar la opcion de gestion de personas
+procesar_opcion(1) :-
+    writeln(""),nl,
+    writeln("**********Gestion de personas**********"),
+    writeln("1. Agregar nueva persona"),
+    writeln("2. Mostrar todas las personas"),
+    read(OpcionPersonas),
+    procesarOpcionPersonas(OpcionPersonas).
+    menu.
+%=======================================================================================================================
+procesar_opcion(2) :-
+    writeln(""),nl,
+    writeln("**********Gestion de proyectos**********"),
+    menu.
+%=======================================================================================================================
+procesar_opcion(3) :-
+    writeln(""),nl,
+    writeln("**********Gestion de tareas**********"),
+    menu.
+%=======================================================================================================================
+procesar_opcion(4) :-
+    writeln(""),nl,
+    writeln("**********Buscar tareas libres**********"),
+    menu.
+%=======================================================================================================================
+procesar_opcion(5) :-
+    writeln(""),nl,
+    writeln("**********Recomendar persona**********"),
+    menu.
+%=======================================================================================================================
+procesar_opcion(6) :-
+    writeln(""),nl,
+    writeln("**********Asignar tarea**********"),
+    menu.
+%=======================================================================================================================
+procesar_opcion(7) :-
+    writeln(""),nl,
+    writeln("**********Cerrar tarea**********"),
+    menu.
+%=======================================================================================================================
+procesar_opcion(8) :-
+    writeln(""),nl,
+    writeln("**********Estadisticas**********"),
+    menu.
+%=======================================================================================================================
+procesar_opcion(0) :-
+    writeln("¡Hasta luego!"),
+    halt.
+procesar_opcion(_) :-
+    writeln("Opcion invalida. Por favor, selecciona una opcion valida."),nl,
+    menu.
+%=======================================================================================================================
+% Predicado para mostrar el menú principal y procesar la opción seleccionada
 menu :-
     writeln(""),nl,
     writeln("**********Menu general**********"),
@@ -14,47 +82,7 @@ menu :-
     writeln("0. Salir"),
     read(Opcion),
     procesar_opcion(Opcion).
-
-% Predicado para procesar la opción seleccionada
-procesar_opcion(1) :-
-    writeln("Has seleccionado la opción de gestionar personas."),
-    % Aquí puedes agregar la lógica correspondiente a la opción de gestionar personas
-    menu.
-procesar_opcion(2) :-
-    writeln("Has seleccionado la opción de gestionar proyectos."),
-    % Aquí puedes agregar la lógica correspondiente a la opción de gestionar proyectos
-    menu.
-procesar_opcion(3) :-
-    writeln("Has seleccionado la opción de gestionar tareas."),
-    % Aquí puedes agregar la lógica correspondiente a la opción de gestionar tareas
-    menu.
-procesar_opcion(4) :-
-    writeln("Has seleccionado la opción de buscar tareas libres."),
-    % Aquí puedes agregar la lógica correspondiente a la opción de buscar tareas libres
-    menu.
-procesar_opcion(5) :-
-    writeln("Has seleccionado la opción de recomendar persona."),
-    % Aquí puedes agregar la lógica correspondiente a la opción de recomendar persona
-    menu.
-procesar_opcion(6) :-
-    writeln("Has seleccionado la opción de asignar tarea."),
-    % Aquí puedes agregar la lógica correspondiente a la opción de asignar tarea
-    menu.
-procesar_opcion(7) :-
-    writeln("Has seleccionado la opción de cerrar tarea."),
-    % Aquí puedes agregar la lógica correspondiente a la opción de cerrar tarea
-    menu.
-procesar_opcion(8) :-
-    writeln("Has seleccionado la opción de estadísticas."),
-    % Aquí puedes agregar la lógica correspondiente a la opción de estadísticas
-    menu.
-procesar_opcion(0) :-
-    writeln("¡Hasta luego!"),
-    halt.
-procesar_opcion(_) :-
-    writeln("Opcion invalida. Por favor, selecciona una opcion valida."),
-    menu.
-
+%=======================================================================================================================
 % Predicado principal para iniciar el programa
 inicio :-
     menu.

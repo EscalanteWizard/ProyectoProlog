@@ -1,1 +1,1 @@
-
+tarea("tarea1","proyecto1","fullstack",activa,"jordano","05-11-2023","sin asignar").

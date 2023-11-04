@@ -239,9 +239,9 @@ validarTarea(_, _, _, _).
 %Entradas: La ruta del archivo de tareas y los datos de la nueva tarea a agregarEmpleado
 %Salidas: Agrega la nueva tarea al archivo de tareas
 %Restricciones: La ruta debe ser valida
-actualizarArchivoTareas(Nombre, Proyecto, Tipo, Estado, Encargado, FechaInicio, Fecha_final):-
+actualizarArchivoTareas(Nombre, Proyecto, Tipo, Estado, Encargado, FechaInicio, FechaCierre):-
     open('D:\\WockSpace\\Lenguajes2023\\ProyectoProlog\\programa\\tareas.txt', append, Stream),
-    writeq(Stream, tarea(Nombre, Proyecto, Tipo, Estado, Encargado, FechaInicio, Fecha_final)), write(Stream, '.\n'),
+    writeq(Stream, tarea(Nombre, Proyecto, Tipo, Estado, Encargado, FechaInicio, FechaCierre)), write(Stream, '.\n'),
     close(Stream).
 
 %Muestra todas las tareas del sistema
@@ -282,8 +282,8 @@ asignarTareaAux(Proyecto, Tarea, Encargado) :-
         writeln('El proyecto no cuenta con tareas del tipo especificado'), nl
     ; tarea(Tarea, Proyecto, _, _, Encargado, _, _) ->
         writeln('La tarea no se encuentra disponible para ser asignada'), nl
-    ; retract(tarea(Tarea, Proyecto, Tipo, _, _, FechaInicio, Fecha_final)),
-        asserta(tarea(Tarea, Proyecto, Tipo, 'activa', Encargado, FechaInicio, Fecha_final)), 
+    ; retract(tarea(Tarea, Proyecto, Tipo, _, _, FechaInicio, FechaCierre)),
+        asserta(tarea(Tarea, Proyecto, Tipo, 'activa', Encargado, FechaInicio, FechaCierre)), 
         actualizarTareas,
         writeln('La tarea ha sido asignada'), nl
     ).
@@ -293,7 +293,7 @@ asignarTareaAux(Proyecto, Tarea, Encargado) :-
 %Salidas: cambia el encargado de "sin asignar" al nombre del encargado
 %Restricciones: El encargado, proyecto y tarea deben estar debidamente identificados en la BC
 actualizarTareas :-
-    findall(tarea(Tarea, Proyecto, Tipo, Estado, Cargo, FechaInicio, Fecha_final), tarea(Tarea, Proyecto, Tipo, Estado, Cargo, FechaInicio, Fecha_final), Tareas),
+    findall(tarea(Tarea, Proyecto, Tipo, Estado, Cargo, FechaInicio, FechaCierre), tarea(Tarea, Proyecto, Tipo, Estado, Cargo, FechaInicio, FechaCierre), Tareas),
     actualizarArchivoDeTexto(Tareas, 'D:\\WockSpace\\Lenguajes2023\\ProyectoProlog\\programa\\tareas.txt').
 
 actualizarArchivoDeTexto(Tareas, FilePath) :-
